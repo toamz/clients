@@ -19,6 +19,7 @@ import { SyncService as SyncServiceAbstraction } from "@bitwarden/common/vault/a
 
 import { I18nService } from "../../platform/services/i18n.service";
 import { NativeMessagingService } from "../../services/native-messaging.service";
+import { AutoTypeService } from "../../vault/services/autotype.service";
 
 @Injectable()
 export class InitService {
@@ -36,7 +37,8 @@ export class InitService {
     private cryptoService: CryptoServiceAbstraction,
     private nativeMessagingService: NativeMessagingService,
     private themingService: AbstractThemingService,
-    private encryptService: EncryptService
+    private encryptService: EncryptService,
+    private autoTypeService: AutoTypeService
   ) {}
 
   init() {

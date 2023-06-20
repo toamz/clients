@@ -56,6 +56,7 @@ import { ElectronDialogService } from "../../services/electron-dialog.service";
 import { EncryptedMessageHandlerService } from "../../services/encrypted-message-handler.service";
 import { NativeMessageHandlerService } from "../../services/native-message-handler.service";
 import { NativeMessagingService } from "../../services/native-messaging.service";
+import { AutoTypeService } from "../../vault/services/autotype.service";
 import { PasswordRepromptService } from "../../vault/services/password-reprompt.service";
 import { SearchBarService } from "../layout/search/search-bar.service";
 
@@ -193,6 +194,7 @@ const RELOAD_CALLBACK = new InjectionToken<() => any>("RELOAD_CALLBACK");
         StateServiceAbstraction,
       ],
     },
+    { provide: AutoTypeService, deps: [CipherServiceAbstraction] },
   ],
 })
 export class ServicesModule {}

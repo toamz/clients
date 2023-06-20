@@ -206,7 +206,8 @@ if (!nativeBinding) {
   throw new Error(`Failed to load native binding`)
 }
 
-const { passwords, biometrics } = nativeBinding
+const { passwords, biometrics,  autotypes} = nativeBinding
 
 module.exports.passwords = passwords
 module.exports.biometrics = biometrics
+module.exports.autotypes = autotypes

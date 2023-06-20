@@ -1,10 +1,35 @@
 #[macro_use]
 extern crate napi_derive;
 
+mod autotype;
 mod biometric;
 mod crypto;
 mod error;
 mod password;
+
+#[napi]
+pub mod autotypes {
+    /// Type string with keyboard.
+    #[napi]
+    pub async fn send_text(key: String) -> napi::Result<()> {
+        super::autotype::send_text(key.as_str())
+            .map_err(|e| napi::Error::from_reason(e.to_string()))
+    }
+
+    /// Type username and password separated with tab.
+    #[napi]
+    pub async fn send_login(username: String, pass: String) -> napi::Result<()> {
+        super::autotype::send_login(username.as_str(), pass.as_str())
+            .map_err(|e| napi::Error::from_reason(e.to_string()))
+    }
+
+    /// Get active window title.
+    #[napi]
+    pub async fn active_window_title() -> napi::Result<String> {
+        super::autotype::active_window_title()
+            .map_err(|e| napi::Error::from_reason(e.to_string()))
+    }
+}
 
 #[napi]
 pub mod passwords {

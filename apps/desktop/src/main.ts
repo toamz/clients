@@ -21,6 +21,7 @@ import { ElectronStateService } from "./platform/services/electron-state.service
 import { ElectronStorageService } from "./platform/services/electron-storage.service";
 import { I18nService } from "./platform/services/i18n.service";
 import { ElectronMainMessagingService } from "./services/electron-main-messaging.service";
+import { NativeAutoTypeService } from "./services/native-autotype.service";
 
 export class Main {
   logService: ElectronLogService;
@@ -37,6 +38,7 @@ export class Main {
   menuMain: MenuMain;
   powerMonitorMain: PowerMonitorMain;
   trayMain: TrayMain;
+  nativeAutoTypeService: NativeAutoTypeService;
   biometricsService: BiometricsServiceAbstraction;
   nativeMessagingMain: NativeMessagingMain;
 
@@ -116,6 +118,8 @@ export class Main {
       this.windowMain,
       this.updaterMain
     );
+
+    this.nativeAutoTypeService = new NativeAutoTypeService(this.windowMain);
 
     this.biometricsService = new BiometricsService(
       this.i18nService,
