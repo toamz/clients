@@ -7,19 +7,26 @@ import { WindowMain } from "../main/window.main";
 
 export class NativeAutoTypeService {
   constructor(private mainWindow: WindowMain, private logService: LogService) {
-    ipcMain.on("autotype", async (event: any, username: string, pass: string) => {
+    ipcMain.on("autotype:execute", async (event: any, username: string, pass: string) => {
       this.autotype(username, pass);
     });
 
+    ipcMain.handle(
+      "autotype:get_next_window",
+      async (event: any, username: string, pass: string) => {
+        return autotypes.nextWindowUrl();
+      }
+    );
+
     app.whenReady().then(() => {
       const ret = globalShortcut.register("CommandOrControl+Alt+V", () => {
-        autotypes.activeWindowTitle().then((title) => {
-          mainWindow.win.webContents.send("autotype-sortcut", title);
+        autotypes.activeWindowUrl().then((title) => {
+          this.mainWindow.win.webContents.send("autotype:sortcut", title);
         });
       });
 
       if (!ret) {
-        logService.error("Unable to register auto-type shortcut");
+        this.logService.error("Unable to register auto-type shortcut");
       }
     });
 

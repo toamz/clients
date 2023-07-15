@@ -18,6 +18,9 @@ import { CipherService } from "@bitwarden/common/vault/abstractions/cipher.servi
 import { CollectionService } from "@bitwarden/common/vault/abstractions/collection.service";
 import { FolderService } from "@bitwarden/common/vault/abstractions/folder/folder.service.abstraction";
 import { PasswordRepromptService } from "@bitwarden/common/vault/abstractions/password-reprompt.service";
+import { LoginUriView } from "@bitwarden/common/vault/models/view/login-uri.view";
+
+import { AutoTypeService } from "../../../vault/services/autotype.service";
 
 const BroadcasterSubscriptionId = "AddEditComponent";
 
@@ -45,7 +48,8 @@ export class AddEditComponent extends BaseAddEditComponent implements OnChanges,
     logService: LogService,
     organizationService: OrganizationService,
     sendApiService: SendApiService,
-    dialogService: DialogServiceAbstraction
+    dialogService: DialogServiceAbstraction,
+    private autoTypeService: AutoTypeService
   ) {
     super(
       cipherService,
@@ -126,5 +130,9 @@ export class AddEditComponent extends BaseAddEditComponent implements OnChanges,
     this.platformUtilsService.launchUri(
       "https://bitwarden.com/help/managing-items/#protect-individual-items"
     );
+  }
+
+  async setNextWindow(uri: LoginUriView) {
+    uri.uri = await this.autoTypeService.nextWindow();
   }
 }

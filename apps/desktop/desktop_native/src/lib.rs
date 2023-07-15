@@ -25,8 +25,15 @@ pub mod autotypes {
 
     /// Get active window title.
     #[napi]
-    pub async fn active_window_title() -> napi::Result<String> {
-        super::autotype::active_window_title()
+    pub async fn active_window_url() -> napi::Result<String> {
+        super::autotype::active_window_url()
+            .map_err(|e| napi::Error::from_reason(e.to_string()))
+    }
+
+    /// Get title of window under the active window.
+    #[napi]
+    pub async fn next_window_url() -> napi::Result<String> {
+        super::autotype::next_window_url()
             .map_err(|e| napi::Error::from_reason(e.to_string()))
     }
 }

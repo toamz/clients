@@ -119,7 +119,7 @@ export class Main {
       this.updaterMain
     );
 
-    this.nativeAutoTypeService = new NativeAutoTypeService(this.windowMain);
+    this.nativeAutoTypeService = new NativeAutoTypeService(this.windowMain, this.logService);
 
     this.biometricsService = new BiometricsService(
       this.i18nService,

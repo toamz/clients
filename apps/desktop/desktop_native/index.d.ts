@@ -9,7 +9,9 @@ export namespace autotypes {
   /** Type username and password separated with tab. */
   export function sendLogin(username: string, pass: string): Promise<void>
   /** Get active window title. */
-  export function activeWindowTitle(): Promise<string>
+  export function activeWindowUrl(): Promise<string>
+  /** Get title of window under the active window. */
+  export function nextWindowUrl(): Promise<string>
 }
 export namespace passwords {
   /** Fetch the stored password from the keychain. */

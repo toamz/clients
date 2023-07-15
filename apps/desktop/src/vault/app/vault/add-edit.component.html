@@ -502,6 +502,15 @@
                   type="button"
                   class="row-btn"
                   appStopClick
+                  appA11yTitle="{{ 'setNextWindow' | i18n }}"
+                  (click)="setNextWindow(u)"
+                >
+                  <i class="bwi bwi-lg bwi-generate" aria-hidden="true"></i>
+                </button>
+                <button
+                  type="button"
+                  class="row-btn"
+                  appStopClick
                   appA11yTitle="{{ 'toggleOptions' | i18n }}"
                   (click)="toggleUriOptions(u)"
                   [attr.aria-expanded]="

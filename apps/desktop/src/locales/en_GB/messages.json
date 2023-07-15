@@ -1251,6 +1251,9 @@
     "message": "Default match detection",
     "description": "Default URI match detection for auto-fill."
   },
+  "setNextWindow": {
+    "message": "Set next window"
+  },
   "toggleOptions": {
     "message": "Toggle options"
   },
